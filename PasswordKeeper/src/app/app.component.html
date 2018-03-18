@@ -9,7 +9,10 @@
         <button mat-menu-item (click)="signOut()">Sign Out</button>
     </mat-menu>
 
-    
-</mat-toolbar>
 
-<router-outlet></router-outlet>
+</mat-toolbar>
+<div fxLayoutAlign="center center">
+    <div class="container" fxFlex fxFlex.md="960px" fxFlex.gt-md="1100px">
+        <router-outlet></router-outlet>
+    </div>
+</div>
