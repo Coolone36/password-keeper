@@ -12,4 +12,8 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
+  signInWithRoseFire(): void{
+    console.log("TODO: Signin with rose fire")
+  }
+
 }
