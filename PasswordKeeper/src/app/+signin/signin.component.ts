@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth'
+import * as firebase from 'firebase/app'
 
 @Component({
   selector: 'app-signin',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  constructor(public afAuth: AngularFireAuth) {}
 
   ngOnInit() {
+  }
+
+  login() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    
   }
 
   signInWithRoseFire(): void{
