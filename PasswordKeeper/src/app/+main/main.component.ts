@@ -6,7 +6,7 @@ import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { Password } from "../models/password.model";
 import { Observable } from 'rxjs/Observable';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
 import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
 
 @Component({
@@ -20,6 +20,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private authStateSubscription: Subscription;
   private passwordStream: AngularFireList<Password[]>;
   public passwordData: Observable<any[]>;
+  private firebasePath: String;
 
   ngOnDestroy(): void {
     this.authStateSubscription.unsubscribe();
@@ -30,6 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
       if(user){
         //Sign in just happened
         console.log("User is signed in: " + user.uid);
+        this.firebasePath=`/users/${user.uid}`;
         this.passwordStream = this.db.list(`/users/${user.uid}`);
         this.passwordData = this.passwordStream.valueChanges();
       } else {
@@ -45,7 +47,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
   showPasswordDialog(): void {
     console.log("showing dialog msg");
-    this.dialog.open(PasswordDialogComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {firebasePath: this.firebasePath};
+
+    this.dialog.open(PasswordDialogComponent, dialogConfig);
   }
 
 }
