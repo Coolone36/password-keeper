@@ -39,6 +39,7 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SigninComponent } from './+signin/signin.component';
 import { MainComponent } from './+main/main.component';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 // Needs to be after all imports
 export const MaterialModules = [
@@ -79,6 +80,7 @@ export const MaterialModules = [
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // for the dev/prod enviornments
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireDatabaseModule,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     BrowserAnimationsModule,
     MaterialModules,
