@@ -40,6 +40,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SigninComponent } from './+signin/signin.component';
 import { MainComponent } from './+main/main.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { PasswordDialogComponent } from './password-dialog/password-dialog.component';
 
 // Needs to be after all imports
 export const MaterialModules = [
@@ -72,8 +73,14 @@ export const MaterialModules = [
   declarations: [
     AppComponent,
     SigninComponent,
-    MainComponent
+    MainComponent,
+    PasswordDialogComponent,
   ],
+  // Because PasswordDialogComponent is a popup dialog
+entryComponents: [
+  PasswordDialogComponent,
+],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

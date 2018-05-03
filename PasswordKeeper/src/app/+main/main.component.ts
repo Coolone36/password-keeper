@@ -6,6 +6,8 @@ import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { Password } from "../models/password.model";
 import { Observable } from 'rxjs/Observable';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { PasswordDialogComponent } from '../password-dialog/password-dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -38,7 +40,12 @@ export class MainComponent implements OnInit, OnDestroy {
     })
   }
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router, public dialog: MatDialog) {
+  }
+
+  showPasswordDialog(): void {
+    console.log("showing dialog msg");
+    this.dialog.open(PasswordDialogComponent);
   }
 
 }
